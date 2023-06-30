@@ -30,9 +30,9 @@ resource "aws_eip" "ngw" {
   tags = merge(var.tags,{Name = "${var.env}-ngw-${count.index+1}"})
 }
 
-#output "subnets" {
-#  value = module.subnets
-#}
+output "subnets" {
+  value = module.subnets
+}
 
 resource "aws_nat_gateway" "ngw" {
   count = length(lookup(lookup(var.subnets, "public",{} ),"cidr_block",null))
