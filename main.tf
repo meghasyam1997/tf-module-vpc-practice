@@ -22,3 +22,14 @@ resource "aws_internet_gateway" "igw" {
 
   tags = merge(var.tags,{Name = "${var.env}-igw"})
 }
+
+resource "aws_eip" "ngw" {
+  vpc      = true
+
+  tags = merge(var.tags,{Name = "${var.env}-ngw"})
+}
+
+#resource "aws_nat_gateway" "gw" {
+#  allocation_id = aws_eip.ngw.id
+#  subnet_id     = aws_subnet.example.id
+#}
