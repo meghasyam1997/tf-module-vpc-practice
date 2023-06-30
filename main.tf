@@ -29,6 +29,9 @@ resource "aws_eip" "ngw" {
   tags = merge(var.tags,{Name = "${var.env}-ngw"})
 }
 
+output "subnets" {
+  value = module.subnets
+}
 #resource "aws_nat_gateway" "gw" {
 #  allocation_id = aws_eip.ngw.id
 #  subnet_id     = aws_subnet.example.id
