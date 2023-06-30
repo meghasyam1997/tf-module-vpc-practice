@@ -35,7 +35,7 @@ output "subnets" {
 }
 
 output "aws_ip" {
-  value = aws_eip.ngw.id
+  value = aws_eip.ngw[count.index].id
 }
 resource "aws_nat_gateway" "ngw" {
   count = length(lookup(lookup(var.subnets, "public",{} ),"cidr_block",null))
